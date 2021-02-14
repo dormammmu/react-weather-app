@@ -3,7 +3,7 @@ import "./index.css"
 import { Hint } from 'react-autocomplete-hint';
 
 const api = {
-  key: "e33c4b7ef44ad9bd1badf2d25cbee9fa",
+  key: "key",
   base: "https://api.openweathermap.org/data/2.5/"
 }
 const city = ["BHILAI", "RAIPUR","DURG"];
