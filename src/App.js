@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import "./index.css"
+import { Hint } from 'react-autocomplete-hint';
+
 const api = {
-  key: "your api key",
+  key: "e33c4b7ef44ad9bd1badf2d25cbee9fa",
   base: "https://api.openweathermap.org/data/2.5/"
 }
-
+const city = ["BHILAI", "RAIPUR","DURG"];
 function App() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
 
   const search = evt => {
@@ -15,7 +17,7 @@ function App() {
         .then(res => res.json())
         .then(result => {
           setWeather(result);
-          setQuery('');
+          setQuery("");
           console.log(result);
         });
     }
@@ -34,9 +36,11 @@ function App() {
   }
 
   return (
+    
     <div className={(typeof weather.main != "undefined") ? ((weather.main.temp > 16) ? 'app warm' : 'app') : 'app'}>
       <main>
         <div className="search-box">
+        <Hint options={city}allowTabFill>
           <input 
             type="text"
             className="search-bar"
@@ -44,8 +48,9 @@ function App() {
             onChange={e => setQuery(e.target.value)}
             value={query}
             onKeyPress={search}
-          />
-        </div>
+        />
+        </Hint>
+      </div>
         {(typeof weather.main != "undefined") ? (
         <div>
           <div className="location-box">
@@ -62,6 +67,7 @@ function App() {
         ) : ('')}
       </main>
     </div>
+    
   );
 }
 
